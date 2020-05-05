@@ -1,0 +1,9 @@
+{% if article_list %}
+    <ul>
+    {% for a in article_list %}
+        <li><a href="/blog/{{ a.id }}/">{{ a.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>最新の記事が見つかりません</p>
+{% endif %}

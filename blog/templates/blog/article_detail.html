@@ -1,6 +1,21 @@
+{% extends "blog/base.html" %}
+
+{% block uniq_css %}
+#additional_info {
+  text-align: right;
+  padding-right: 5px;
+}
+{% endblock %}
+
+{% block main %}
 {% if article %}
 <h2>{{ article.title }}</h2>
-<p>{{ article.body }}</p>
+<p>{{ article.body|safe }}</p>
+<hr>
+<p id="additional_info">
+<i>written in: {{ article.created_dt }}</i>
+<p>
 {% else %}
 <p>記事が見つかりません</p>
 {% endif %}
+{% endblock %}

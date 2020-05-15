@@ -1,71 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>tnbe21 blog</title>
-<style>
-main {
-  float: left;
-  margin: auto;
-  width: 80%;
-}
-aside {
-  float: left;
-  margin: auto;
-}
-</style>
-</head>
-<body>
-<header>
-<h1>tnbe21 blog</h1>
-</header>
-<main>
+{% extends "blog/base.html" %}
+
+{% block main %}
 {% if article_list %}
-  <ul>
-  {% for a in article_list %}
-  <li><a href="{% url 'blog:detail' a.id %}">{{ a.title }}</a></li>
-  {% endfor %}
-  </ul>
+<ul>
+{% for a in article_list %}
+<li><a href="{% url 'blog:detail' a.id %}">{{ a.title }}</a></li>
+{% endfor %}
+</ul>
 {% else %}
-  <p>最新の記事が見つかりません</p>
+<p>最新の記事が見つかりません</p>
 {% endif %}
-</main>
-<aside>
-  <div id="search">
-    <h3>SEARCH</h3>
-    <form id="search_form" action="search">
-      <input type="text" name="word">
-      <input type="submit" value="GO">
-    </form>
-  </div>
-  <nav>
-    <h3>年月別</h3>
-    <ul>
-      <li>
-        <h4>2020(折りたたみ)</h4>
-        <ul>
-          <li>2020.05(2)(リンク)</li>
-          <li>2020.04(1)</li>
-          <li>2020.03(10)</li>
-          <li>2020.01(4)</li>
-        </ul>
-      </li>
-      <li>
-        <h4>2019</h4>
-        <ul>
-          <li>2020.12(1)</li>
-          <li>2020.08(2)</li>
-          <li>2020.02(5)</li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <nav>
-    <h3>タグ別</h3>
-    <ul>
-      <li>DIARY(20)(リンク)</li>
-      <li>TECH(40)</li>
-    </ul>
-  </nav>
-</aside>
-</body>
-</html>
+{% endblock %}

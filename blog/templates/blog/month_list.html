@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block main %}
+<h2>{{ year }}年{{ month }}月の記事</h2>
 {% if article_list %}
 <ul>
 {% for a in article_list %}

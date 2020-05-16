@@ -1,4 +1,4 @@
-# blog_project
+# blog-project
 
 ## env
 Python 3.7.6

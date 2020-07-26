@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+
+{% block main %}
+<h2>タグ: {{ tag }}の記事</h2>
+{% if article_list %}
+<ul>
+{% for a in article_list %}
+<li><a href="{% url 'blog:detail' a.id %}">{{ a.title }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>記事が見つかりません</p>
+{% endif %}
+{% endblock %}

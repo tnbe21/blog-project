@@ -39,7 +39,6 @@ register_converter(PageNumConverter, 'page')
 app_name = 'blog'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('top', views.top),
     path('index/<int:page_num>', views.IndexView.as_view(), name='index'),
     path('month/<yyyy:year>/<mm:month>/<page:page_num>', views.MonthListView.as_view(), name='month_list'),
     path('tag/<slug:tag>/<page:page_num>', views.TagListView.as_view(), name='tag_list'),

@@ -1,6 +1,4 @@
-from django.http import JsonResponse
 from django.views import generic
-
 from .models.article import Article
 
 
@@ -11,8 +9,8 @@ class BaseView(generic.View):
         context = super().get_context_data(**kwargs)
         # URLパラメータをすべてレスポンスのコンテキスト内に詰める
         context.update(self.kwargs)
-        # TODO 年月ごとの記事数のリストの生成
-        # TODO タグとそれに紐づく記事数のリストの生成
+        # 年月ごとの記事数のリスト
+        # タグとそれに紐づく記事数のリスト
         return context
 
 
@@ -24,13 +22,6 @@ class IndexView(BaseView, generic.ListView):
         start = LMT * (page_num - 1)
         return Article.objects.filter(status=Article.STATUS_MAP['PUBLIC']).order_by('-created_dt')[start:(start + LMT)]
 
-
-def top(request):
-    # page_num = self.kwargs.get('page_num', 1)
-    page_num = 1
-    start = LMT * (page_num - 1)
-    articles = Article.objects.filter(status=Article.STATUS_MAP['PUBLIC']).order_by('-created_dt')[start:(start + LMT)]
-    return JsonResponse(list(articles.values()), safe=False)
 
 class MonthListView(BaseView, generic.ListView):
     template_name = 'blog/month_list.html'

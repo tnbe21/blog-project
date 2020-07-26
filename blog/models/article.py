@@ -19,3 +19,17 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def to_dict(self):
+        tags = []
+        for tag in self.tags.values():
+            tags.append(tag['name'])
+
+        return {
+            'title': self.title,
+            'body': self.body,
+            'status': self.status,
+            'tags': tags,
+            'created_at': self.created_dt,
+            'updated_at': self.updated_dt,
+        }

@@ -1,4 +1,6 @@
-from django.http import JsonResponse
+import json
+from django.core import serializers
+from django.http import JsonResponse, HttpResponse
 from django.views import generic
 
 from .models.article import Article
@@ -25,12 +27,12 @@ class IndexView(BaseView, generic.ListView):
         return Article.objects.filter(status=Article.STATUS_MAP['PUBLIC']).order_by('-created_dt')[start:(start + LMT)]
 
 
-def top(request):
-    # page_num = self.kwargs.get('page_num', 1)
-    page_num = 1
+def top(req):
+    page_num = int(req.GET.get('page_num', 1))
     start = LMT * (page_num - 1)
     articles = Article.objects.filter(status=Article.STATUS_MAP['PUBLIC']).order_by('-created_dt')[start:(start + LMT)]
-    return JsonResponse(list(articles.values()), safe=False)
+    return _create_json_response(list(map(lambda a: a.to_dict(), articles)))
+
 
 class MonthListView(BaseView, generic.ListView):
     template_name = 'blog/month_list.html'
@@ -83,3 +85,7 @@ class SearchResultListView(BaseView, generic.ListView):
 class DetailView(BaseView, generic.DetailView):
     model = Article
     queryset = Article.objects.filter(status=Article.STATUS_MAP['PUBLIC'])
+
+def _create_json_response(content):
+    return JsonResponse(content, safe=False, json_dumps_params={'ensure_ascii': False})
+

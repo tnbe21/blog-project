@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tnbe21 blog</title>
+<style>
+main {
+  float: left;
+  padding: 0 10px;
+  width: 80%;
+}
+aside {
+  float: left;
+  padding: 0 10px;
+}
+h1 a {
+  color: #000000;
+  text-decoration: none;
+}
+{% block uniq_css %}
+{% endblock %}
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="{% url 'blog:index' %}">tnbe21 blog</a></h1>
+</header>
+<main>
+{% block main %}
+{% endblock %}
+</main>
+<aside>
+  <div id="search">
+    <h3>SEARCH</h3>
+    <form id="search_form" action="/blog/search" method="GET">
+      <input type="text" name="w">
+      <input type="submit" value="GO">
+    </form>
+  </div>
+  <nav>
+    <h3>年月別</h3>
+    <ul>
+      <li>
+        <h4>2020(折りたたみ)</h4>
+        <ul>
+          <li><a href="{% url 'blog:month_list' 2020 5 '' %}">2020.05(2)</a></li>
+          <li>2020.04(1)</li>
+          <li>2020.03(10)</li>
+          <li>2020.01(4)</li>
+        </ul>
+      </li>
+      <li>
+        <h4>2019</h4>
+        <ul>
+          <li>2020.12(1)</li>
+          <li>2020.08(2)</li>
+          <li>2020.02(5)</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <nav>
+    <h3>タグ別</h3>
+    <ul>
+      <li><a href="{% url 'blog:tag_list' 'DIARY' '' %}">DIARY(20)</a></li>
+      <li>TECH(40)</li>
+    </ul>
+  </nav>
+</aside>
+</body>
+</html>

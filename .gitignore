@@ -1,6 +1,5 @@
-*.sqlite3
 __pycache__
 *.pyc
-
-.envrc
+*.sqlite3
+.idea
 .venv

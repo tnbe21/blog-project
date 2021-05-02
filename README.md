@@ -1,13 +1,8 @@
 # blog-project
 
-## env
-Python 3.7.6
-
 ## local start
-setup pip and virtualenv, then
+install direnv, pyenv, and python 3.9.1 via pyenv, then
 ```Bash
-virtualenv .venv
-source .venv/bin/activate
 pip install -r requirements.txt
 python manage.py runserver
 ```
